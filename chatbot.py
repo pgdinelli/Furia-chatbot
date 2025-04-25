@@ -1,3 +1,4 @@
+from flask import Flask, request, jsonify
 from dotenv import load_dotenv
 from openai import OpenAI
 import os
@@ -18,20 +19,37 @@ SYSTEM_PROMPT = (
     "Utilize a língua portuguesa do Brasil para se comunicar com fãs brasileiros."
 )
 
-# método responsável por receber mensagens como entrada de um usuário
+# instanciando uma aplicação em Flask
+app = Flask(__name__)
+
+# definindo o endpoint e a requisição da aplicação web
+@app.route("/chat", methods=["POST"])
 def send_messages(user_message):
     
-    response = client.chat.completions.create(
-        model = "gemma-3-4b-it-qat",
-        messages = [
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": user_message}
-        ],
-        temperature = 0.7,
-    )
+    # instanciando a mensagem como um JSON
+    data = request.get_json()
+    user_message = data.get("message")
     
-    # retornando requisições HTTP da API da OpenAI
-    return response.choices[0].message.content
+    try:
+        # definindo as características do chatbot
+        response = client.chat.completions.create(
+            model = "gemma-3-4b-it-qat",
+            messages = [
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "user", "content": user_message}
+            ],
+            temperature = 0.7,
+        )
+    
+        # retornando requisições HTTP da API do LM Studio
+        reply = response.choices[0].message.content
+        return jsonify({"reply": reply})
+    
+    except Exception as e:
+        return jsonify({"erro ": str(e)}), 500
+    
+if __name__ == "__main__":
+    app.run(debug=True)
 
 user_input = input("Digite aqui sua mensagem: ")
 bot_response = send_messages(user_input)
