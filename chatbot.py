@@ -1,16 +1,13 @@
 from dotenv import load_dotenv
-import openai
-from openai import OpenAI, base_url, completions
+from openai import OpenAI
 import os
-import requests
 
-# carregando variáveis dotenv para consumir a API da OpenAI
-#load_dotenv()
-#openai.api_key = os.getenv("OPENAI_API_KEY")
+# carregando variáveis dotenv para consumir a API da LM Studio
+load_dotenv()
 
 # fazendo conexão do LM Studio com a API da OpenAI
 client = OpenAI(
-    base_url = "http://127.0.0.1:1234/v1", api_key="lm-studio"
+    base_url = os.getenv("LM_STUDIO_URL"), api_key="lm-studio"
 )
 
 # prompt padrão para o bot interagir com os fãs da Furia
@@ -32,21 +29,10 @@ def send_messages(user_message):
         ],
         temperature = 0.7,
     )
-    '''
-    payload = {
-        "messages": [
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": user_message}
-        ],
-        "temperature": 0.7,
-        "model": "gemma-3-4b-it-qat"
-    }'''
-
-    # fazendo requisições HTTP no LM Studio
-    response_out = requests.post(base_url, json=response)
-    return response_out
+    
+    # retornando requisições HTTP da API da OpenAI
+    return response.choices[0].message.content
 
 user_input = input("Digite aqui sua mensagem: ")
 bot_response = send_messages(user_input)
-#print(completions.choices[0].message)
-#print("Chatbot: ", bot_response["content"])
+print("Chatbot: ", bot_response)
