@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from dotenv import load_dotenv
 from openai import OpenAI
 import os
@@ -19,16 +19,33 @@ SYSTEM_PROMPT = (
     "Utilize a língua portuguesa do Brasil para se comunicar com fãs brasileiros."
 )
 
+# Definindo caminho do frontend
+FRONTEND_FOLDER = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'frontend'))
+
 # instanciando uma aplicação em Flask
-app = Flask(__name__)
+app = Flask(__name__, template_folder=FRONTEND_FOLDER, static_folder=FRONTEND_FOLDER)
+
+
+# definindo a rota da aplicação frontend
+@app.route("/")
+def index():
+     return send_from_directory(FRONTEND_FOLDER, "index.html")
+ 
+@app.route("/<path:path>")
+def static_files(path):
+    return send_from_directory(FRONTEND_FOLDER, path)
+
 
 # definindo o endpoint e a requisição da aplicação web
 @app.route("/chat", methods=["POST"])
-def send_messages(user_message):
+def send_messages():
     
     # instanciando a mensagem como um JSON
     data = request.get_json()
     user_message = data.get("message")
+    
+    if not user_message:
+        return jsonify({"erro": "Mensagem não fornecida"}), 400
     
     try:
         # definindo as características do chatbot
@@ -48,9 +65,7 @@ def send_messages(user_message):
     except Exception as e:
         return jsonify({"erro ": str(e)}), 500
     
+    
 if __name__ == "__main__":
     app.run(debug=True)
 
-user_input = input("Digite aqui sua mensagem: ")
-bot_response = send_messages(user_input)
-print("Chatbot: ", bot_response)
