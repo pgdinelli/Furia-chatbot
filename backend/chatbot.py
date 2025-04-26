@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify, send_from_directory
+from flask_cors import CORS
 from dotenv import load_dotenv
 from openai import OpenAI
 import os
@@ -24,6 +25,7 @@ FRONTEND_FOLDER = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 
 
 # instanciando uma aplicação em Flask
 app = Flask(__name__, template_folder=FRONTEND_FOLDER, static_folder=FRONTEND_FOLDER)
+CORS(app)
 
 
 # definindo a rota da aplicação frontend
