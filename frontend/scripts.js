@@ -1,4 +1,4 @@
-// instanciando os objetos de input e chat
+// instanciando os objetos de input botão de enviar mensagem
 const userInput = document.getElementById("user-input");
 const sendButton = document.getElementById("send-button");
 
