@@ -32,7 +32,7 @@ SYSTEM_PROMPT = (
 
 # instanciando uma aplicação em Flask
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "http://127.0.0.1:5500"}})
+CORS(app, resources={r"/*": {"origins": "http://localhost:5500", "methods": ["GET", "POST", "OPTIONS"], "allow_headers": ["Content-Type"]}})
 
 # Armazenando histórico de conversa na memória
 chat_history = [
@@ -40,7 +40,7 @@ chat_history = [
 ]
 
 # definindo o endpoint e a requisição da aplicação web
-@app.route("/chat", methods=["POST"])
+@app.route("/chat", methods=["POST", "OPTIONS"])
 def send_messages():
     
     # instanciando a mensagem como um JSON
