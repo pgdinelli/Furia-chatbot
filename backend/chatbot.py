@@ -30,28 +30,14 @@ SYSTEM_PROMPT = (
     "kaahSENSEI é a sniper, ou awper do time feminino."
 )
 
-# Definindo caminho do frontend
-FRONTEND_FOLDER = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'frontend'))
-
 # instanciando uma aplicação em Flask
-app = Flask(__name__, template_folder=FRONTEND_FOLDER, static_folder=FRONTEND_FOLDER)
+app = Flask(__name__)
 CORS(app)
 
 # Armazenando histórico de conversa na memória
 chat_history = [
     {"role": "system", "content": SYSTEM_PROMPT}
 ]
-
-
-# definindo a rota da aplicação frontend
-@app.route("/")
-def index():
-     return send_from_directory(FRONTEND_FOLDER, "index.html")
- 
-@app.route("/<path:path>")
-def static_files(path):
-    return send_from_directory(FRONTEND_FOLDER, path)
-
 
 # definindo o endpoint e a requisição da aplicação web
 @app.route("/chat", methods=["POST"])
