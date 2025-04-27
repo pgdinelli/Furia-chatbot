@@ -31,6 +31,11 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  background-color: #1e1e1e;
+  background-image: url('Furia_Logo_Text_White.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .user {
@@ -76,4 +81,32 @@ body {
   color: #000;
   font-weight: bold;
   cursor: pointer;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.sender {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.text {
+  font-size: 1em;
+}
+
+.bot-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bot-logo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
 }

@@ -12,14 +12,17 @@ userInput.addEventListener("keydown", function (event) {
 
 async function sendMessage() {
 
-  const userMessage = userInput.value;
+  const userMessage = userInput.value.trim();
 
   if (!userMessage) {
     return;
   }
 
   const chatBox = document.getElementById("chat-box");
-  chatBox.innerHTML += `<div class='user'><strong>Você:</strong> ${userMessage}</div>`;
+  chatBox.innerHTML += ` <div class="message user">
+      <div class="sender">Você:</div>
+      <div class="text">${userMessage}</div>
+    </div>`;
   userInput.value = "";
 
 
@@ -31,7 +34,14 @@ async function sendMessage() {
   });
 
   const data = await response.json();
-  chatBox.innerHTML += `<div class='bot'><strong>FURIAbot:</strong> ${data.reply}</div>`;
+  chatBox.innerHTML += `
+  <div class='message bot'>
+    <div class='sender'>Pantera Negra:</div>
+    <div class="bot-content">
+      <img src="Furia_Esports_logo.png" alt="Logo da Furia" class="bot-logo">
+      <div class="text">${data.reply}</div>
+    </div>
+  </div>`;
   chatBox.scrollTop = chatBox.scrollHeight;
 
 }
