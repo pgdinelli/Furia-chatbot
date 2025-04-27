@@ -32,7 +32,7 @@ SYSTEM_PROMPT = (
 
 # instanciando uma aplicação em Flask
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "http://127.0.0.1:5500/frontend/index.html"}})
+CORS(app, resources={r"/*": {"origins": "http://127.0.0.1:5500"}})
 
 # Armazenando histórico de conversa na memória
 chat_history = [
