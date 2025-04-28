@@ -32,7 +32,7 @@ SYSTEM_PROMPT = (
 
 # instanciando uma aplicação em Flask
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "https://furia-chatbot-wheat.vercel.app", "methods": ["GET", "POST", "OPTIONS"], "allow_headers": ["Content-Type"]}})
+CORS(app)
 
 # Armazenando histórico de conversa na memória
 chat_history = [
@@ -40,7 +40,7 @@ chat_history = [
 ]
 
 # definindo o endpoint e a requisição da aplicação web
-@app.route("/chat", methods=["POST", "OPTIONS"])
+@app.route("/chat", methods=["POST"])
 def send_messages():
     
     # instanciando a mensagem como um JSON
