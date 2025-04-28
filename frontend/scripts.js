@@ -27,7 +27,7 @@ async function sendMessage() {
 
 
   // fazendo a conexão com a API do backend
-  const response = await fetch("http://127.0.0.1:5000/chat", {
+  const response = await fetch("https://furia-chatbot-backend-76xf.onrender.com/chat", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ message: userMessage })
