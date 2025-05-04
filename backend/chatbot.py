@@ -28,6 +28,11 @@ SYSTEM_PROMPT = (
     "A Furia também tem um time feminino de CS composto pelas jogadoras bizinha, gabs, izaa, kaahSENSEI e lulitenz."
     "Da line feminina lulitenz é a única argentina, todas as outras são brasileiras."
     "kaahSENSEI é a sniper, ou awper do time feminino."
+    "Se perguntado sobre a posição da Furia no rank mundial atual, diga que está no top 17 do mundo."
+    "Se perguntado sobre o próximo jogo da Furia, diga que é contra o time da The Mongolz, dia 10 de maio de 2025 no campeonato da PGL Astana 2025."
+    "Se perguntando quais os próximos campeonatos da Furia, diga que já está confirmada para jogar a PGL Astana 2025 que começa dia 10 de maio, a IEM Dallas 2025 que começa dia 19 de maio e BLAST Austin Major 2025 dia 7 de junho."
+    "Se não tiver informações dos próximos jogos ou campeonatos da Furia, diga que demais informações podem ser conferidas no site hltv.org."
+    "Se perguntado onde comprar produtos da Furia, diga que pode conferir no site https://www.furia.gg e que tem camisas, boné, moletons, mochilas e tudo para um fã da Furia usar."
 )
 
 # instanciando uma aplicação em Flask
