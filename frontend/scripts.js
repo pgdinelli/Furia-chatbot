@@ -26,7 +26,7 @@ async function sendMessage() {
   userInput.value = "";
 
 
-  // fazendo a conexão com a API do backend
+  // fazendo a conexão com a API do backend, utilizando túnel do ngrok para uso do chatbot por terceiros
   const response = await fetch("https://b221-2804-d4b-c511-4800-a048-5d38-248-ebdb.ngrok-free.app/chat", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
