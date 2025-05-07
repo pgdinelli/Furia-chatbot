@@ -29,23 +29,27 @@ https://github.com/pgdinelli/Furia-chatbot/tree/main/frontend
 # Backend
 Até o presente momento a única forma de rodar o backend é em uma máquina local, devido ao uso do LM Studio que não permite conexão de origens diferentes através da web. 
 
-Algumas soluções para resolver este problema:
+### Algumas soluções para resolver este problema:
 - Utilizar a API original da OpenAI sem compatibilidade com a API do LM Studio, porém é um serviço pago.
 - Rodar o modelo de LLM em uma aplicação em nuvem, que seria uma implementação complexa.
 - Baixar o LM Studio em sua própria máquina e rodar o modelo localmente.
 
 Por conta desta limitação, ao acessar o chat pela Vercel será possível enviar mensagens normalmente já que esta funcionalidade é feita pela parte do frontend, porém o usuário não receberá resposta nenhuma.
+### Como eu resolvi este problema parcialmente:
+Utilizando uma ferramenta chamada ngrok é possível criar uma espécie de "túnel" entre um servidor rodando localmente e uma máquina externa, desta forma outras pessoas podem conversar e receber respostas do bot normalmente para fins de demonstração do projeto. Isto só irá funcionar enquanto o servidor estiver rodando na máquina local, no momento que o ngrok for encerrado ele irá fechar o "túnel" e não será mais possível que outras máquinas possam receber respostas do bot.
 ### Tecnologias utilizadas
 - Python
 - Flask
 - API OpenAI
 - LM Studio
+- ngrok
 ### Código fonte
 https://github.com/pgdinelli/Furia-chatbot/tree/main/backend
 # Referências
 - Documentação Flask: https://flask.palletsprojects.com/en/stable/
 - Documentação LM Studio: https://lmstudio.ai/docs/app
 - Documentação OpenAI API: https://platform.openai.com/docs/overview
+- Documentação ngrok: https://ngrok.com/docs
 # Autor
 Paulo Guilherme Souza Dinelli.<br>
 Linkedin: https://www.linkedin.com/in/paulodinelli
