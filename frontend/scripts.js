@@ -27,7 +27,7 @@ async function sendMessage() {
 
 
   // fazendo a conexão com a API do backend
-  const response = await fetch("http://127.0.0.1:5000/chat", {
+  const response = await fetch("https://b221-2804-d4b-c511-4800-a048-5d38-248-ebdb.ngrok-free.app/chat", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ message: userMessage })
